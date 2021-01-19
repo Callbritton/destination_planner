@@ -6,6 +6,11 @@ class DestinationsController < ApplicationController
   end
 
   def show
+    zip = @destination.zip
+    @weather = WeatherFacade.fetch_weather_data(zip)
+
+    weather_description = @weather.summary
+    @image = ImageFacade.fetch_image_data(weather_description)
   end
 
   def new
